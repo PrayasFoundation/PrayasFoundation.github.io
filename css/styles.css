@@ -3575,6 +3575,11 @@ ul.pagination li:last-child {
     clear: both;
 }
 
+#about-container-div>.row{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .section-about-us .about-counter-block {
     margin-top: 20px;
 }
