@@ -1,8 +1,8 @@
 /*-------------------------------------------------------------------*/
-/* Project: Blood Donation - Activism & Campaign HTML5 Template */
+/* Project: Prayas Foundation */
 /* Ver: 1.0.2*/
-/* Date: 21-11-2017*/
-/* Author: xenioushk*/
+/* Date: 10-09-2020*/
+/* Author: Pushp Vashisht & Aashna Singh*/
 /*-------------------------------------------------------------------*/
 
 jQuery(function($) {
@@ -476,7 +476,12 @@ jQuery(function($) {
     // PRELOADER
 
     $(window).on("load", function() {
-
+        $.get("http://localhost:3000/api/counter", function(data, status){
+            $("#donors").text(data.donors); // Document.getElementById("donors").setText=data.donors;
+            $("#lives_saved").text(data.lives_saved);
+            $("#blood_donations").text(data.blood_donations);
+            $("#awards").text(data.awards);
+        });
         $("#preloader").fadeOut(500);
 
     });
