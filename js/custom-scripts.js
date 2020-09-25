@@ -18,6 +18,7 @@ jQuery(function($) {
     var states = null;
     var cities = null;
     var localities = null;
+    var blood_groups = null;
 
     // DETECT TOUCH DEVICE
 
@@ -478,44 +479,65 @@ jQuery(function($) {
 
     // Register Donor
 
-    $('.datepicker').datepicker({
-        format: 'yyyy/mm/dd',
-        endDate: '-18y'
-    });
-
     // Update city based on state
     $("#state").change(function(){
         var selectedStateId = $(this).children("option:selected").attr("data-state-id");
-        $.get("http://localhost:3000/api/cities/", function(data, status){
-            states = data;
-            for(state in states){
-                $("#state").append(
-                    `<option data-state-id=${states[state]["id"]}>${states[state]["state_name"]}</option>`
+        $.get(`http://localhost:3000/api/cities/${selectedStateId}`, function(data, status){
+            cities = data;
+            $("#city").html("<option>Select your City</option>");
+            for(var i=0; i<cities.length; i++){
+                $("#city").append(
+                    `<option data-city-id=${cities[i]["id"]}>${cities[i]["city_name"]}</option>`
                 );
             }
         });
-        cities = states[state]["state_name"]
+    });
+
+    // Update localities based on city
+    $("#city").change(function(){
+        var selectedCityId = $(this).children("option:selected").attr("data-city-id");
+        $.get(`http://localhost:3000/api/localities/${selectedCityId}`, function(data, status){
+            localities = data;
+            $("#locality").html("<option>Select your locality</option>");
+            for(var i=0; i<localities.length; i++){
+                $("#locality").append(
+                    `<option data-locality-id=${localities[i]["id"]}>${localities[i]["locality_name"]}</option>`
+                );
+            }
+        });
     });
 
     // PRELOADER
 
     $(window).on("load", function() {
 
-        $.get("http://localhost:3000/api/counter", function(data, status){
-            $("#donors").text(data.donors); // Document.getElementById("donors").setText=data.donors;
-            $("#lives_saved").text(data.lives_saved);
-            $("#blood_donations").text(data.blood_donations);
-            $("#awards").text(data.awards);
-            console.log(data, status);
-        });
-        $.get("http://localhost:3000/api/states", function(data, status){
-            states = data;
-            for(state in states){
-                $("#state").append(
-                    `<option data-state-id=${states[state]["id"]}>${states[state]["state_name"]}</option>`
-                );
-            }
-        });
+        if((window.location.href).includes("index")){
+            $.get("http://localhost:3000/api/counter", function(data, status){
+                $("#donors").text(data.donors); // Document.getElementById("donors").setText=data.donors;
+                $("#lives_saved").text(data.lives_saved);
+                $("#blood_donations").text(data.blood_donations);
+                $("#awards").text(data.awards);
+                // console.log(data, status);
+            });
+            $.get("http://localhost:3000/api/blood_groups", function(data, status){
+                blood_groups = data;
+                // console.log(blood_groups)
+                for(var i=0; i<blood_groups.length; i++){
+                    // console.log(blood_groups[i]["bg_symbol"]);
+                    $("#bg").append(
+                        `<option data-bg-id=${blood_groups[i]["id"]}>${blood_groups[i]["bg_symbol"]}</option>`
+                    );
+                }
+            });
+            $.get("http://localhost:3000/api/states", function(data, status){
+                states = data;
+                for(var i=0; i<states.length; i++){
+                    $("#state").append(
+                        `<option data-state-id=${states[i]["id"]}>${states[i]["state_name"]}</option>`
+                    );
+                }
+            });
+        }
         $("#preloader").fadeOut(500);
 
     });
