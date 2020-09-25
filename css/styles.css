@@ -2339,11 +2339,7 @@ header.one-page .navbar-nav>li>a span {
 
 .appoinment-form .select-style select.form-control {
     border: 1px solid #EEE;
-    -moz-appearance: none;
     position: relative;
-    background-image: url("../images/down_arrow.png");
-    background-position: 100% 4px;
-    background-repeat: no-repeat;
     cursor: pointer;
     box-shadow: none;
     color: #999;
