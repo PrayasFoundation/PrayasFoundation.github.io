@@ -15,6 +15,9 @@ jQuery(function($) {
         rtl_status = true;
     }
 
+    var states = null;
+    var cities = null;
+    var localities = null;
 
     // DETECT TOUCH DEVICE
 
@@ -473,14 +476,45 @@ jQuery(function($) {
 
     }
 
+    // Register Donor
+
+    $('.datepicker').datepicker({
+        format: 'yyyy/mm/dd',
+        endDate: '-18y'
+    });
+
+    // Update city based on state
+    $("#state").change(function(){
+        var selectedStateId = $(this).children("option:selected").attr("data-state-id");
+        $.get("http://localhost:3000/api/cities/", function(data, status){
+            states = data;
+            for(state in states){
+                $("#state").append(
+                    `<option data-state-id=${states[state]["id"]}>${states[state]["state_name"]}</option>`
+                );
+            }
+        });
+        cities = states[state]["state_name"]
+    });
+
     // PRELOADER
 
     $(window).on("load", function() {
+
         $.get("http://localhost:3000/api/counter", function(data, status){
             $("#donors").text(data.donors); // Document.getElementById("donors").setText=data.donors;
             $("#lives_saved").text(data.lives_saved);
             $("#blood_donations").text(data.blood_donations);
             $("#awards").text(data.awards);
+            console.log(data, status);
+        });
+        $.get("http://localhost:3000/api/states", function(data, status){
+            states = data;
+            for(state in states){
+                $("#state").append(
+                    `<option data-state-id=${states[state]["id"]}>${states[state]["state_name"]}</option>`
+                );
+            }
         });
         $("#preloader").fadeOut(500);
 
