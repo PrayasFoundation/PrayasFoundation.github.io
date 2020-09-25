@@ -284,24 +284,6 @@ jQuery(function($) {
         });
     }
 
-    // GOOGLE MAP FOR CONTACT & EVENT PAGE.
-
-    if ($('#map_canvas').length) {
-
-        var map;
-
-        $('#map_canvas').css({
-            'height': '400px'
-        });
-
-        map = new GMaps({
-            div: '#map_canvas',
-            lat: -12.043333,
-            lng: -77.028333
-        });
-
-    }
-
     // CONTACT FORM 
 
     function email_checkRegexp(o, regexp) {
