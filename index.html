@@ -420,19 +420,19 @@
                             <h3 class="join-heading">Register as a donor</h3>
                             <form id="appoinment-form" class="appoinment-form">
                                 <div class="form-group col-md-6">
-                                    <input id="your_name" name="member_name" class="form-control" placeholder="Name" type="text">
+                                    <input id="your_name" name="member_name" class="form-control" placeholder="Name" type="text" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input id="your_email" name="" class="form-control" placeholder="Email" type="email">
+                                    <input id="your_email" name="" class="form-control" placeholder="Email" type="email" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input id="your_phone" name="mobile" class="form-control" placeholder="Phone" type="text">
+                                    <input id="your_phone" name="mobile" class="form-control" placeholder="Phone" min="10" max="10" type="text" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input name="dob" class="form-control" placeholder="DOB (YYYY/MM/DD)" type="text">
+                                    <input id="dob" name="dob" class="form-control" placeholder="DOB (YYYY/MM/DD)" type="text" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input id="bg" name="blood_group" class="form-control" placeholder="Blood Group" type="text">
+                                    <input id="bg" name="blood_group" class="form-control" min="2" placeholder="Blood Group" type="text" required>
                                 </div>
                                 <!-- <div class="form-group col-md-6">
                                     <div class="select-style">
@@ -445,7 +445,7 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group col-md-6">
-                                    <input id="state" name="state" class="form-control" placeholder="State" type="text">
+                                    <input id="state" name="state" class="form-control" placeholder="State" type="text" required>
                                 </div>
                                 <!-- <div class="form-group col-md-6">
                                     <div class="select-style">
@@ -458,7 +458,7 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group col-md-6">
-                                    <input id="city" name="city" class="form-control" placeholder="City" type="text">
+                                    <input id="city" name="city" class="form-control" placeholder="City" type="text" required>
                                 </div>
                                 <!-- <div class="form-group col-md-6">
                                     <div class="select-style">
@@ -471,7 +471,7 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group col-md-6">
-                                    <input id="locality" name="locality" class="form-control" placeholder="Locality" type="text">
+                                    <input id="locality" name="locality" class="form-control" placeholder="Locality" type="text" required>
                                 </div>
                                 <!-- <div class="form-group col-md-6">
                                     <div class="select-style">
@@ -483,7 +483,7 @@
                                         </select>
                                     </div> -->
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <button id="btn_submit" class="btn-submit" type="submit">Register</button>
+                                    <button id="btn_submit" class="btn-submit">Register</button>
                                 </div>
                             </form>
 
