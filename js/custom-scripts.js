@@ -474,7 +474,7 @@ jQuery(function($) {
         var btn_submit = $("#btn_submit");
         // console.log(name, email, mobile, dob, bg, state, city, locality);
         $.post(
-            "http://localhost:3000/api/donors",
+            "http://prayasfoundation.org.in/api/donors",
             {
                 member_name: name,
                 email: email,
